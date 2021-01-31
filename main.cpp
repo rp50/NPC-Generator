@@ -14,7 +14,6 @@ void saveNPC(json &npcJson, std::map<std::string, NPC> &npcMap, NPC currentNPC){
     for(auto stat : currentNPC.getStats()){
         npcJson[currentNPC.getName()]["Stats"].emplace(stat.first, stat.second);
     }
-    std::cout << npcJson.at(currentNPC.getName()) << std::endl;
 }
 
 void writeNPCstoFile(json npcJson){
@@ -65,6 +64,20 @@ int main(){
                             continue;
                         }
                     } while(false);
+            }
+            else if(cmd.find("get") == 0){ // Get command, retrieves an NPC by their name
+                if(cmd.length() > 4){
+                    std::string name = cmd.substr(4, cmd.length());
+                    if(npcMap.find(name) != npcMap.end()){
+                        npcMap.at(name).print();
+                    }
+                    else{
+                        std::cout << "NPC \"" << name << "\" not found." << std::endl;
+                    }
+                }
+                else{
+                    std::cout << "Please give a name for the command to get." << std::endl;
+                }
             }
             else{
                 std::cout << "Unrecognized command \"" << cmd << "\", type help to see a list of commands." << std::endl;

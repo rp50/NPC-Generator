@@ -44,11 +44,13 @@ int main(){
     readNPCstoMap(npcJson, npcMap);
     while(std::getline(std::cin, cmd)){
         try{
-            if(cmd == "exit"){ // Exit command, exits the program
+            // Exit command, exits the program
+            if(cmd == "exit"){
                 writeNPCstoFile(npcJson);
                 exit(0);
             }
-            else if(cmd == "new") { // New command, generates a new NPC, and gives the option to add it to the json file
+            // New command, generates a new NPC, and gives the option to add it to the json file
+            else if(cmd == "new") { 
                 NPC currentNPC;
                 currentNPC.print();
                 std::cout << "Save NPC? (y/n)" << std::endl;
@@ -57,7 +59,7 @@ int main(){
                     std::getline(std::cin, cmd);
                         if(cmd == "y"){
                             saveNPC(npcJson, npcMap, currentNPC);
-                            //writeNPCstoFile(npcFile, npcJson);
+                            writeNPCstoFile(npcJson);
                         }
                         else if(cmd != "n"){
                             std::cout << "Input not recognized, answer \"y\" for yes, or \"n\" for no." << std::endl;
@@ -65,7 +67,8 @@ int main(){
                         }
                     } while(false);
             }
-            else if(cmd.find("get") == 0){ // Get command, retrieves an NPC by their name
+            // Get command, retrieves an NPC by their name
+            else if(cmd.find("get") == 0){ 
                 if(cmd.length() > 4){
                     std::string name = cmd.substr(4, cmd.length());
                     if(npcMap.find(name) != npcMap.end()){
@@ -76,8 +79,14 @@ int main(){
                     }
                 }
                 else{
-                    std::cout << "Please give a name for the command to get." << std::endl;
+                    std::cout << "Please give a name for the command to get in the command" << std::endl;
                 }
+            }
+            // Help command, gives information on the available commands
+            else if(cmd == "help"){
+                std::cout << "get \"name\"" << std::endl << "\t Retrieves an NPC based on the name provided." << std::endl;
+                std::cout << "new" << std::endl << "\t Generates a random new NPC." << std::endl;
+                std::cout << "exit" << std::endl << "\t Exits the program and saves all NPCs." << std::endl;
             }
             else{
                 std::cout << "Unrecognized command \"" << cmd << "\", type help to see a list of commands." << std::endl;

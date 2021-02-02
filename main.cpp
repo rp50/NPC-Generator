@@ -67,6 +67,23 @@ int main(){
                         }
                     } while(false);
             }
+            // Remove command, deletes an NPC by their name
+            else if(cmd.find("remove") == 0){
+                if(cmd.length() > 7){
+                    std::string name = cmd.substr(7, cmd.length());
+                    if(npcMap.find(name) != npcMap.end()){
+                        npcMap.erase(name);
+                        npcJson.erase(name);
+                        std::cout << name << " removed." << std::endl;
+                    }
+                    else{
+                        std::cout << "NPC \"" << name << "\" not found." << std::endl;
+                    }
+                }
+                else{ 
+                    std::cout << "Please give a name for the command to remove, in the command." << std::endl;
+                }
+            }
             // Get command, retrieves an NPC by their name
             else if(cmd.find("get") == 0){ 
                 if(cmd.length() > 4){
@@ -79,12 +96,13 @@ int main(){
                     }
                 }
                 else{
-                    std::cout << "Please give a name for the command to get in the command" << std::endl;
+                    std::cout << "Please give a name for the command to get, in the command." << std::endl;
                 }
             }
             // Help command, gives information on the available commands
             else if(cmd == "help"){
                 std::cout << "get \"name\"" << std::endl << "\t Retrieves an NPC based on the name provided." << std::endl;
+                std::cout << "remove \"name\"" << std::endl << "\t Deletes an NPC based on the name provided." << std::endl;
                 std::cout << "new" << std::endl << "\t Generates a random new NPC." << std::endl;
                 std::cout << "exit" << std::endl << "\t Exits the program and saves all NPCs." << std::endl;
             }

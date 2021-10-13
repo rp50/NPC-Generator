@@ -1,4 +1,9 @@
 # NPC-Generator
+## ⚠️ Before using this project, take a look at my new project, [NPC-API](https://github.com/robkpaul/NPC-API) ⚠️
+## NPC-API has most of the same functionality!
+
+
+
 A Command-line D&D 5E NPC Generator.
 
 ### How Do I Use This?

@@ -1,6 +1,5 @@
 # NPC-Generator
-## ⚠️ Before using this project, take a look at my new project, [NPC-API](https://github.com/robkpaul/NPC-API) ⚠️
-## NPC-API has most of the same functionality!
+## ⚠️ Before using this project, take a look at my new project, [NPC-API](https://github.com/robkpaul/NPC-API), it has most of the same functionality and a web interface is planned
 
 
 
